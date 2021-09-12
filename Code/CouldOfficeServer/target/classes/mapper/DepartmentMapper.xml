@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DNA.mapper.DepartmentMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="DNA.bean.Department">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="parentId" property="parentId" />
+        <result column="depPath" property="depPath" />
+        <result column="enabled" property="enabled" />
+        <result column="isParent" property="isParent" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, parentId, depPath, enabled, isParent
+    </sql>
+
+    <resultMap id="DepartmentWithChildren" type="DNA.bean.Department" extends="BaseResultMap">
+        <!-- 递归查询 -->
+        <collection property="children" ofType="DNA.bean.Department"
+                    select="DNA.mapper.DepartmentMapper.getAllDepartments" column="id">
+        </collection>
+    </resultMap>
+    <!-- 查询所有部门 -->
+    <select id="getAllDepartments" resultMap="DepartmentWithChildren">
+        SELECT
+            <include refid="Base_Column_List" />
+        FROM
+            t_department
+        WHERE
+            parentId = #{parentId};
+    </select>
+
+    <!-- 添加部门（调用存储过程） -->
+    <select id="addDepartment" statementType="CALLABLE">
+        CALL addDep(
+            #{name, mode = IN, jdbcType = VARCHAR},
+            #{parentId, mode = IN, jdbcType = INTEGER},
+            #{enabled, mode = IN, jdbcType = BOOLEAN},
+            #{result, mode = OUT, jdbcType = INTEGER},
+            #{id, mode = OUT, jdbcType = INTEGER});
+    </select>
+
+    <!-- 删除部门（调用存储过程）-->
+    <select id="deleteDepartment" statementType="CALLABLE">
+        CALL deleteDep(
+            #{id, mode = IN, jdbcType = INTEGER},
+            #{result, mode = OUT, jdbcType = INTEGER}
+        );
+    </select>
+</mapper>

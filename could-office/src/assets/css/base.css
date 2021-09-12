@@ -1,0 +1,21 @@
+:root {
+  --color-text: #0e1621;
+  --color-high-text: #cfd5da;
+  --color-one: #5b9bd5;
+  --color-two: #f1937a;
+  --color-three: #48b02b;
+  --color-background: #2a333c;
+  --color-background-high: #455563;
+  --font-size: 16px;
+  --line-height: 1.5;
+}
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{
+  margin:0;
+  padding:0
+}
+
+body {
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  user-select: none; /* 禁止用户鼠标在页面上选中文字/图片等 */
+}

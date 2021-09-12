@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/CouldOfficeGenerator/CouldOfficeGenerator.iml" filepath="$PROJECT_DIR$/CouldOfficeGenerator/CouldOfficeGenerator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CouldOfficeServer/CouldOfficeServer.iml" filepath="$PROJECT_DIR$/CouldOfficeServer/CouldOfficeServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/code.iml" filepath="$PROJECT_DIR$/code.iml" />
+    </modules>
+  </component>
+</project>
